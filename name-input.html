@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+  <style type='text/css'>
+    div.name-inputs {
+      position: relative;
+    }
+
+    input.name-input {
+      border: none;
+      padding: 0 10px;
+      margin: 0;
+      width: 100%;
+    }
+
+    input.name-input:focus {
+      border: none;
+      outline: none
+    }
+
+    div.name-inputs.input-outline {
+      border-color: #66afe9;
+      -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075), 0 0 8px rgba(102, 175, 233, .6);
+      box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075), 0 0 8px rgba(102, 175, 233, .6);
+    }
+
+    input.name-input:hover {}
+
+    input.name-input:hover:focus {
+      border: none;
+      outline: none
+    }
+
+    div.first-name {
+      width: 50%;
+      left: 0;
+      position: absolute;
+    }
+
+    div.last-name {
+      width: 50%;
+      left: 50%;
+      position: absolute;
+      padding-right: 10px;
+    }
+
+    div.mid-name {
+      width: 33.33%;
+      left: 33.33%;
+      position: absolute;
+      padding-right: 10px;
+    }
+
+    div.first-name:after {
+      content: "/";
+      font-size: 18px;
+      right: 0;
+      top: -2px;
+      position: absolute;
+    }
+
+    div.mid-name:after {
+      content: "/";
+      font-size: 18px;
+      right: 0;
+      top: -2px;
+      position: absolute;
+    }
+
+    div.hidden {
+      display: none;
+    }
+
+    div.hidden:after {
+      display: none;
+    }
+  </style>
+</head>
+
+<body class="container">
+  <div>
+    <label>
+      <input type="checkbox" id='typeMidName' /> I have mid-name
+    </label>
+    <div class="name-inputs form-control">
+      <div class="first-name">
+        <input type="text" class="name-input" placeholder="First Name" />
+      </div>
+      <div class="mid-name hidden">
+        <input type="text" class="name-input" placeholder="Middle Name" />
+      </div>
+      <div class="last-name">
+        <input type="text" class="name-input" placeholder="Last Name" />
+      </div>
+    </div>
+  </div>
+  <script src="http://code.jquery.com/jquery-latest.js"></script>
+  <script type="text/javascript">
+    $(document).ready(function() {
+      $('input').on('focus', function() {
+        $(this).closest('.name-inputs').addClass('input-outline');
+      }).on('blur', function() {
+        $(this).closest('.name-inputs').removeClass('input-outline');
+      });
+
+      $('#typeMidName').on('click', function() {
+        if ($(this).is(':checked')) {
+          $(".first-name").css({
+            'width': '33.33%'
+          });
+          $(".last-name").css({
+            'left': '66.66%',
+            'width': '33.33%'
+          });
+          $(".mid-name").removeClass("hidden")
+        } else {
+          $(".first-name").css({
+            'width': '50%'
+          });
+          $(".last-name").css({
+            'left': '50%',
+            'width': '50%'
+          });
+          $(".mid-name").addClass("hidden")
+        }
+      });
+    });
+  </script>
+</body>
+
+</html>
